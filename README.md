@@ -2,7 +2,7 @@
 
 This repository contains systemd unit files for Jack Audio and LinuxSampler And a2jmidi (Works with pulseaudio), allowing easy management and automation of these services on Linux systems . 
 
-**Dependencies : **
+**Dependencies :**
 - jack2
 - jack2-dbus 
 - a2jmidid
