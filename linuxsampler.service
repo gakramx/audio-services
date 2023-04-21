@@ -1,0 +1,14 @@
+[Unit]
+Description=LinuxSampler
+After=dbus-org.a2jmidid.service
+Requires=dbus-org.a2jmidid.service
+[Service]
+Type=simple
+ExecStartPre=-/usr/bin/killall -9 linuxsampler
+ExecStartPre=-/usr/bin/killall -9 ls-main
+ExecStartPre=-/bin/sleep 2
+ExecStart=/usr/bin/linuxsampler
+ExecStopPost=-/usr/bin/killall -9 linuxsampler
+ExecStopPost=-/usr/bin/killall -9 ls-main
+[Install]
+WantedBy=default.target

@@ -1,0 +1,35 @@
+[Unit]
+Description=JACK 2
+After=pulseaudio.service
+Requires=dbus.socket
+Requires=pulseaudio.service
+
+[Service]
+Type=dbus
+BusName=org.jackaudio.service
+
+ExecStartPre=-/usr/bin/killall -9 jackdbus
+ExecStartPre=-/bin/sleep 2
+ExecStart=/usr/bin/jackdbus auto
+ExecStartPost=-/bin/sleep 6
+ExecStartPost=/usr/bin/jack_control ds alsa
+ExecStartPost=/usr/bin/jack_control dps device hw:MicU,0
+ExecStartPost=/usr/bin/jack_control dps period 256
+ExecStartPost=/usr/bin/jack_control dps nperiods 3
+ExecStartPost=/usr/bin/jack_control dps rate 48000
+ExecStartPost=/usr/bin/jack_control dps shorts True
+ExecStartPost=/usr/bin/jack_control eps driver alsa
+ExecStartPost=/usr/bin/jack_control eps realtime True
+ExecStartPost=/usr/bin/jack_control eps realtime-priority 95
+ExecStartPost=-/bin/sleep 1
+ExecStartPost=-/usr/bin/jack_control start
+ExecStartPost=-/bin/sleep 3
+ExecStop=-/usr/bin/jack_control exit
+ExecStopPost=-/bin/sleep 2
+ExecStopPost=-/usr/bin/killall -9 jackdbus
+
+SuccessExitStatus=0
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target

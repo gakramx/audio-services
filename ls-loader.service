@@ -1,0 +1,9 @@
+[Unit]
+Description=LinuxSampler LSCP loader
+After=linuxsampler.service
+Requires=linuxsampler.service
+[Service]
+ExecStartPre=/bin/sleep 5
+ExecStart=-/bin/bash -c '/bin/cat /home/%u/main.lscp | /usr/bin/netcat localhost 8888'
+[Install]
+WantedBy=default.target
