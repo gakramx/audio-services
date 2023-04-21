@@ -12,7 +12,7 @@ This repository contains systemd unit files for Jack Audio and LinuxSampler And 
 
 **Usage :**
 
- Edit **dbus-org.jackaudio.service** this unit to change your sound card configuration .
+ Edit **dbus-org.jackaudio.service** unit to change your sound card configuration .
 
 **Note :** If you have LSCP files and you want to load it after  **Linuxsampler**  you need to edit ** ls-loader.service**  and set LSCP file path in your system.
 
